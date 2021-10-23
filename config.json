@@ -1,0 +1,8 @@
+{
+  "apis": [
+    {
+      "token": "a1046275dc9f0adfb0f8f1a36de45e8a",
+      "maxRateLimit": 20
+    }
+  ]
+}
