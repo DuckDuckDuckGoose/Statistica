@@ -1,6 +1,26 @@
 {
+  "name": "statistica",
+  "version": "1.0.0",
+  "description": "Provides statistics about common playstayles per tank in World of Tanks (TM)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DuckDuckDuckGoose/Statistica.git"
+  },
+  "keywords": [
+    "WOT"
+  ],
+  "author": "DuckDuckDuckGoose",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DuckDuckDuckGoose/Statistica/issues"
+  },
+  "homepage": "https://github.com/DuckDuckDuckGoose/Statistica#readme",
   "dependencies": {
-    "axios": "^0.23.0",
-    "qs": "^6.10.1"
+    "sequelize": "^6.7.0",
+    "sqlite3": "^5.0.2"
   }
 }
