@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/DuckDuckDuckGoose/Statistica#readme",
   "dependencies": {
+    "axios": "^0.24.0",
+    "qs": "^6.10.1",
     "sequelize": "^6.7.0",
     "sqlite3": "^5.0.2"
   }

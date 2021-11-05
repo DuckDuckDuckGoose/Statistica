@@ -14,5 +14,5 @@ module.exports = {
   damage_dealt: DataTypes.INTEGER,
   timeStamps: true,
   createdAt: true,
-  updatedAt: false
+  updatedAt: true
 }
