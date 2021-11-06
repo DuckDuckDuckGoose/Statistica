@@ -1,13 +1,23 @@
-const DBManager = require(`./DBAPI.js`);
-const APIInterface = require(`./APIInterface.js`);
-let dbManager = new DBManager();
+const {token} = require(`./config.json`)
+const DBManager = new (require(`./DBAPI.js`))();
+const APIInterface = new (require(`./APIInterface.js`))({token: token, maxRequests: 20    });
+
 let i = 544404755;
-(async () => {
-  APIInterface.accountIdTester(i, 100).then(
-  (data) => {
-    console.log(data);
-  },
-  (err) => {
-    console.log(err);
-  });
-})()
+
+DBManager.emitter.on(`load`, () => {
+  let interval = setInterval(() => {
+    APIInterface.accountIdTester(i, 100).then(
+      (data) => {
+        Object.entries(data).forEach(([account_id, tanks], index) => {
+          tanks.forEach((tank, i) => {
+            DBManager.addPlayerTank({account_id: parseInt(account_id, 10), tank_id: parseInt(tank.tank_id, 10)})
+          });
+        });
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+    i += 100;
+  }, 51)
+})

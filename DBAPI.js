@@ -12,10 +12,17 @@ class DBManager {
       dialect: `sqlite`,
       storage: path.join(process.mainModule.path, `database.db`),
       logging: false,
+      benchmark: true,
       retry: {
         max: 3
       },
-      transactionType: `IMMEDIATE`,
+      transactionType: `DEFERRED`,
+      pool: {
+        max: 10,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+      },
     })
     let seqAuth = this.sequelize.authenticate();
     seqAuth.then(() => {
@@ -53,11 +60,9 @@ class DBManager {
       })
     })
   }
-  addTankStat(params) {
-    return new Promise(async (resolve, reject) => {
-      await this.models.create(params);
-      resolve();
-    })
+  addPlayerTank(params) {
+    this.models.playerTank.create({account_id: 1, tank_id: 2});
   }
 }
+
 module.exports = DBManager;
