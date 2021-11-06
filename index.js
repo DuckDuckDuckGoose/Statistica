@@ -5,7 +5,8 @@ const APIInterface = new (require(`./APIInterface.js`))({token: token, maxReques
 let i = 544404755;
 
 DBManager.emitter.on(`load`, () => {
-  let interval = setInterval(() => {
+  let interval = setInterval(async () => {
+    console.log(i);
     APIInterface.accountIdTester(i, 100).then(
       (data) => {
         Object.entries(data).forEach(([account_id, tanks], index) => {
@@ -19,5 +20,12 @@ DBManager.emitter.on(`load`, () => {
       }
     )
     i += 100;
+    if(i > 544404355) {
+      clearInterval(interval);
+      setTimeout(async () => {
+        let temp = await DBManager.models.playerTank.findAll()
+        console.log(temp);
+      }, 3000)
+    }
   }, 51)
 })
